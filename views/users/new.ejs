@@ -5,35 +5,41 @@
       <div class="card">
         <img class="card-img-top" src="/images/camp.jpg" alt="">
         <div class="card-body">
-          <h5 class="card-title">Edit User profile</h5>
-          <form action="/users/<%=user._id%>?_method=PUT" method="POST" class="validated-form" novalidate enctype="multipart/form-data">
+          <h5 class="card-title">Register</h5>
+          <form action="/users" method="POST" class="validated-form" novalidate enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label" for="username">Username</label>
+                <label class="form-label" for="username">username</label>
                 <input
                   class="form-control"
                   type="text"
                   id="username"
                   name="username"
-                  value="<%= user.username%>"
-                  disabled
                   required
-                  
                 />
                 <div class="valid-feedback">looks good!</div>
                 <div class="mb-3">
-                    <label class="form-label" for="email">Email</label>
+                    <label class="form-label" for="email">email</label>
                     <input
                       class="form-control"
                       type="email"
                       id="email"
                       name="email"
-                      value="<%= user.email%>"
                       required
                     />
                     <div class="valid-feedback">looks good!</div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">password</label>
+                        <input
+                          class="form-control"
+                          type="password"
+                          id="password"
+                          name="password"
+                          required
+                        />
+                        <div class="valid-feedback">looks good!</div>
+                        </div>
                         <div class="mb-3">
-                          <% let verb = user.image ? "Replace" : "Upload" %> 
-                          <label for="image" class="form-label"><%= verb %>  User Image</label>
+                          <label for="image" class="form-label">Upload User Image</label>
                           <input
                             class="form-control"
                             name="image"
@@ -42,7 +48,7 @@
                             multiple
                           />
                         </div>
-                        <button class="btn btn-success btn-block">Update Profile</button>
+                        <button class="btn btn-success btn-block">Register</button>
                         
         </form>
         
