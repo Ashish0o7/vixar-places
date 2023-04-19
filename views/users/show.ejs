@@ -1,0 +1,137 @@
+<%layout('layouts/boilerplate') %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-3">
+      <div class="card mb-3">
+        <% userImage = userShown.image ? userShown.image.url :"/images/nobody.jpg"%>
+        <div style="width: 300%; width: auto">
+          <img
+            src="<%= userImage %>"
+            class="card-img-top"
+            style="height: auto; width: 100%"
+            alt="photo"
+          />
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= userShown.username %></h5>
+          <p class="card-text"><%= userShown.email %></p>
+          <% if(currentUser && currentUser._id.equals(userShown._id)) {%>
+          <div class="d-flex justify-content-center flex-wrap">
+            <a href="/users/<%=userShown._id%>/edit" class="btn btn-info m-3"
+              >Edit Profile</a
+            >
+
+            <button
+              type="button"
+              class="btn btn-danger float-start m-3"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteUser"
+            >
+              Delete User
+            </button>
+          </div>
+
+          <!-- Button trigger modal -->
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="deleteUser"
+            tabindex="-1"
+            aria-labelledby="deleteUserLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteUserLabel">
+                    Do you really want to delete user: "<strong><%= userShown.username %></strong>"
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    All the places created by <%= userShown.username %>
+                    will also be deleted!
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <form
+                    action="/users/<%= userShown._id%>?_method=DELETE"
+                    method="POST"
+                  >
+                    <button class="btn btn-danger float-start m-3">
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="container-fluid">
+        <div class="row justify-content-around align-items-center">
+          <% if(campgrounds.length === 0){ %>
+          <h1>User "<%= userShown.username %>" haven't shared any places</h1>
+      
+      </div>
+            
+          <% } %>  <div class="row"><% if(currentUser && currentUser._id.equals(userShown._id)) {%>
+            <a class="btn btn-outline-success my-3" href="/campgrounds/new"
+            >Add Place</a>
+            <% } %> </div>   <% for (let campground of campgrounds){ %>
+          <div class="col-lg-12" style="max-width: 20rem;">
+            <div class="card mt-3">
+              <% if(campground.images.length) {%>
+              <img
+                class="img-fluid"
+                src="<%=campground.images[0].url%>"
+                alt="img"
+                
+              />
+              <% } else{%>
+              <img
+                class="img-fluid"
+                src="https://images.unsplash.com/photo-1615549158346-a598ad0184ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fGVtcHR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                alt=""
+              />
+              <% } %>
+
+              <div class="card-body">
+                <h5 class="card-title"><b><%= campground.title %></b></h5>
+                <p class="card-text"><%= campground.description %></p>
+                <p class="card-text">
+                  <small class="text-muted"><%= campground.location %> </small>
+                </p>
+                <a
+                  href="/campgrounds/<%= campground._id %>"
+                  class="btn btn-primary"
+                  >view</a
+                >
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

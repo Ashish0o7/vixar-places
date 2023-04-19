@@ -1,0 +1,81 @@
+#cluster-map {
+  width: 100%;
+  height: 400px;
+  border-style: solid;
+  border-color: rgb(186, 162, 84);
+  border-radius: 30px;
+}
+
+#map {
+  width: 100%;
+  height: 300px;
+  border-style: solid;
+  border-color: black;
+
+  border-radius: 30px;
+}
+
+.login-with-google {
+  margin-bottom: 1.2rem;
+}
+
+.login-with-google img {
+  margin-right: 0.7rem;
+}
+
+.login-with-google a {
+  color: blanchedalmond;
+  background-color: rgb(228, 213, 213);
+  text-decoration: none;
+}
+
+.spcl-btn {
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.spcl-btn span {
+  position: relative;
+  display: inline-flex;
+  width: 180px;
+  height: 55px;
+  margin: 0 15px;
+  perspective: 1000px;
+}
+.spcl-btn span a {
+  font-size: 19px;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform 0.25s;
+  font-family: "Montserrat", sans-serif;
+}
+.spcl-btn span a:before,
+.spcl-btn span a:after {
+  position: absolute;
+  content: "View";
+  height: 55px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgb(71, 71, 71);
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.spcl-btn span a:before {
+  color: #fff;
+  background: rgb(71, 71, 71);
+  transform: rotateY(0deg) translateZ(25px);
+}
+.spcl-btn span a:after {
+  color: rgb(71, 71, 71);
+  transform: rotateX(90deg) translateZ(25px);
+}
+.spcl-btn span a:hover {
+  transform: translateZ(-25px) rotateX(-90deg);
+}

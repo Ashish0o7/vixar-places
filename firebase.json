@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "public": "deploy"
+  },
+  "functions": {
+    "source": "app.js"
+  }
+}

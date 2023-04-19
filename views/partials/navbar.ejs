@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container-fluid">
+    <img src="/images/camp.jpg" height="40" width="50" alt="" />
+    <a class="navbar-brand px-2" href="/">Vixar Places</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/campgrounds">Places</a>
+        <a class="nav-link" href="/campgrounds/new">New Place</a>
+        <a class="nav-link" href="/users">User List</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <% if(typeof currentUser == "undefined") {var currentUser=null} %> <%
+        if(!currentUser){ %>
+        <a class="nav-link" href="/users/login">Login</a>
+        <a class="nav-link" href="/users/new">Register</a>
+        <% }else{ %>
+        <a href="/users/<%=currentUser._id%>" class="nav-link">My page</a>
+        <a class="nav-link" href="/users/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

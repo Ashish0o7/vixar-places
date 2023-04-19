@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container">
+  <div class="row justify-content-around">
+    <div class=" col-lg-6 col-md-9  ">
+      <div class="card">
+        <img class="card-img-top" src="/images/camp.jpg" alt="">
+        <div class="card-body">
+
+          <div class="login-with-google"> <a class="btn" href="/users/loginGoogle"><img src="/images/google-logo.png"  alt="" />Login with Google</a></div>
+         <h5><strong>Or</strong> </h5>
+          <h5 class="card-title"><strong>Login</strong> with username and passowrd</h5>
+          <form action="/users/login" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="username">username</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  autofocus
+                />
+                    <div class="valid-feedback">looks good!</div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">password</label>
+                        <input
+                          class="form-control"
+                          type="password"
+                          id="password"
+                          name="password"
+                          required
+                         
+                        />
+                        <div class="valid-feedback">looks good!</div>
+                        </div>
+                        <button class="btn btn-outline-info">Login</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
