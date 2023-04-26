@@ -5,8 +5,8 @@
    padding: 20px;
    /* color: black; */
  } 
- .rounded {
-   border-radius: 5px;
+ .carousel-inner {
+   border-radius: 20px;
    border-color: black;
  }
 .starability-result {
