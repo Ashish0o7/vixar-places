@@ -96,7 +96,7 @@
       </div>
             
           <% } %>  <div class="row"><% if(currentUser && currentUser._id.equals(userShown._id)) {%>
-            <a class="btn btn-outline-success my-3" href="/campgrounds/new"
+            <a class="btn btn-outline-success my-3" href="/places/new"
             >Add Place</a>
             <% } %> </div>   <% for (let campground of campgrounds){ %>
           <div class="col-lg-12" style="max-width: 20rem;">
@@ -123,7 +123,7 @@
                   <small class="text-muted"><%= campground.location %> </small>
                 </p>
                 <a
-                  href="/campgrounds/<%= campground._id %>"
+                  href="/places/<%= campground._id %>"
                   class="btn btn-primary"
                   >view</a
                 >

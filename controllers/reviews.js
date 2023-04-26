@@ -8,7 +8,7 @@ module.exports.createReview = async (req, res) => {
   for (reviewOne of campground.reviews) {
     if (reviewOne.author.equals(req.user._id)) {
       // not only block duplicated review in front end but also backend
-      return res.redirect(`/campgrounds/${campground._id}`);
+      return res.redirect(`/places/${campground._id}`);
     }
   }
   const review = new Review(req.body.review);
@@ -17,7 +17,7 @@ module.exports.createReview = async (req, res) => {
   await review.save();
   await campground.save();
   req.flash("success", "Successfully created a new review!");
-  res.redirect(`/campgrounds/${campground._id}`);
+  res.redirect(`/places/${campground._id}`);
 };
 
 module.exports.deleteReview = async (req, res) => {
@@ -25,7 +25,7 @@ module.exports.deleteReview = async (req, res) => {
   await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
   req.flash("success", "Successfully deleted a review!");
-  res.redirect(`/campgrounds/${id}`);
+  res.redirect(`/places/${id}`);
 };
 
 module.exports.editReview = async (req, res) => {
@@ -35,5 +35,5 @@ module.exports.editReview = async (req, res) => {
     rating: req.body.review.rating,
   });
   req.flash("success", "Successfully edit the review!");
-  res.redirect(`/campgrounds/${id}`);
+  res.redirect(`/places/${id}`);
 };

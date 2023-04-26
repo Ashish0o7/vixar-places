@@ -3,7 +3,7 @@
   <h1 class="text-center">Edit Place</h1>
   <div class="col-md-6 offset-md-3">
     <form
-      action="/campgrounds/<%=campground._id%>?_method=PUT"
+      action="/places/<%=campground._id%>?_method=PUT"
       method="POST"
       class="validated-form"
       novalidate
@@ -101,7 +101,7 @@
         <button class="btn btn-info">Update Place</button>
       </div>
     </form>
-    <a href="/campgrounds/<%= campground._id %> ">Back To Place</a>
+    <a href="/places/<%= campground._id %> ">Back To Place</a>
   </div>
 </div>
 </div>

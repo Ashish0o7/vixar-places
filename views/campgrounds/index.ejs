@@ -6,10 +6,10 @@
 <h1>All Places</h1>
 <div>
 
-  <a class="btn btn-outline-success my-3" href="/campgrounds/new">Add Place</a>
+  <a class="btn btn-outline-success my-3" href="/places/new">Add Place</a>
 </div>
-<div class="container-fluid">
-  <div class="row justify-content-around align-items-center">
+<div class="container-fluid" >
+  <div class="row justify-content-around align-items-center" >
     <% for (let campground of campgrounds){ %>
     <div class="col-lg-5 col-md-9">
       <div class="card mt-3">
@@ -31,7 +31,7 @@
             Rating: <%= campground.averageRating > 0 ? campground.averageRating  : "No review" %>
           </p>
           <div class="spcl-btn">
-            <span><a href="/campgrounds/<%= campground._id %>"></a></span>
+            <span><a href="/places/<%= campground._id %>"></a></span>
           </div>
         </div>
       </div>

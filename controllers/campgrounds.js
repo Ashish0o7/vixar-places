@@ -36,7 +36,7 @@ module.exports.createCampground = async (req, res) => {
   campground.geometry = geoData.body.features[0].geometry;
   await campground.save();
   req.flash("success", "Successfully made a new campground!");
-  res.redirect(`/campgrounds/${campground._id}`);
+  res.redirect(`/places/${campground._id}`);
 };
 
 
@@ -60,7 +60,7 @@ module.exports.showCampground = async (req, res) => {
 
   if (!campground) {
     req.flash("error", "Cannot find that camp!");
-    return res.redirect("/campgrounds");
+    return res.redirect("/places");
   }
 try {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${campground.location}&appid=${apiKey}&units=metric`;
@@ -86,7 +86,7 @@ module.exports.renderEditForm = async (req, res) => {
   const campground = await Campground.findById(id);
   if (!campground) {
     req.flash("error", "Cannot find that campground!");
-    return res.redirect("/campgrounds");
+    return res.redirect("/places");
   }
   res.render("campgrounds/edit", { campground });
 };
@@ -112,11 +112,11 @@ module.exports.updateCampground = async (req, res) => {
   }
 
   req.flash("success", "Successfully updated a campground!");
-  res.redirect(`/campgrounds/${campground._id}`);
+  res.redirect(`/places/${campground._id}`);
 };
 module.exports.deleteCampground = async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findByIdAndDelete(id);
   req.flash("success", "Successfully deleted a campground!");
-  res.redirect("/campgrounds");
+  res.redirect("/places");
 };

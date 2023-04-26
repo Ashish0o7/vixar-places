@@ -57,8 +57,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use("/users", userRouter);
-app.use("/campgrounds", campgroundsRouter);
-app.use("/campgrounds/:id/reviews", reviewsRouter);
+app.use("/places", campgroundsRouter);
+app.use("/places/:id/reviews", reviewsRouter);
 
 app.get("/", (req, res) => {
   res.render("home");

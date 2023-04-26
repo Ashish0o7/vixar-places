@@ -5,7 +5,7 @@ const { cloudinary } = require("../cloudinary");
 
 module.exports.login = async (req, res) => {
   req.flash("success", "welcome back");
-  const redirectUrl = req.session.returnTo || "/campgrounds";
+  const redirectUrl = req.session.returnTo || "/places";
   delete req.session.returnTo;
   res.redirect(redirectUrl);
 };
@@ -21,7 +21,7 @@ module.exports.createUser = async (req, res) => {
   req.login(registeredUser, (err) => {
     if (err) return next(err);
     req.flash("success", "Sucessfully registered! Welcome to Vixar Places!");
-    res.redirect("campgrounds");
+    res.redirect("places");
   });
 };
 
@@ -34,7 +34,7 @@ module.exports.renderNewUser = (req, res) => {
 module.exports.renderLogout = (req, res) => {
   req.logout();
   req.flash("success", "GoodBye!");
-  res.redirect("/campgrounds");
+  res.redirect("/places");
 };
 
 module.exports.renderUsers = async (req, res) => {
