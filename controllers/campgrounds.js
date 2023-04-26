@@ -6,7 +6,7 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const axios = require('axios');
 
-const apiKey = "2bcd938709b00304711740ebeb41f5bf";
+const apiKey = process.env.OPENWEATHER_API_KEY;
 module.exports.index = async (req, res, next) => {
   const campgrounds = await Campground.find({})
     .populate("reviews")
