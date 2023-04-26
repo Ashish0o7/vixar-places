@@ -4,6 +4,7 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const review = require("../models/review");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+const axios = require('axios');
 
 const apiKey = "2bcd938709b00304711740ebeb41f5bf";
 module.exports.index = async (req, res, next) => {
@@ -39,7 +40,6 @@ module.exports.createCampground = async (req, res) => {
 };
 
 
-
 module.exports.showCampground = async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findById(id)
@@ -62,17 +62,24 @@ module.exports.showCampground = async (req, res) => {
     req.flash("error", "Cannot find that camp!");
     return res.redirect("/campgrounds");
   }
-
-  try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${campground.location}&appid=${apiKey}&units=metric`;
-    //const response = await fetch(url);
-    //const weatherData = await response.json();
-    res.render("campgrounds/show", { campground, isCommented});
-  } catch (err) {
-    console.error(err);
-    req.flash("error", "Could not retrieve weather data!");
-    res.render("campgrounds/show", { campground, isCommented });
-  }
+try {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${campground.location}&appid=${apiKey}&units=metric`;
+  const response = await axios.get(url);
+  const weatherData = response.data;
+  const weather = {
+    description: weatherData.weather[0].description,
+    icon: `http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
+    temperature: weatherData.main.temp,
+    feelsLike: weatherData.main.feels_like,
+    humidity: weatherData.main.humidity,
+    windSpeed: weatherData.wind.speed,
+  };
+  res.render("campgrounds/show", { campground, isCommented, weather });
+} catch (err) {
+  console.error(err);
+  req.flash("error", "Could not retrieve weather data!");
+  res.render("campgrounds/show", { campground, isCommented, weather: null });
+}
 };
 module.exports.renderEditForm = async (req, res) => {
   const { id } = req.params;

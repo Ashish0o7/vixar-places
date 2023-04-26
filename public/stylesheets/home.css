@@ -1,42 +1,67 @@
-
+/* Use a modern font */
 body {
-  height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-  background-size: cover;
-  background-position: center;
-  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+  font-family: 'Montserrat', sans-serif;
 }
 
+/* Use a gradient background with a parallax effect */
+body {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+    url("main_back.jpg") no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Add a subtle animation to the cover container */
 .cover-container {
   max-width: 60vw;
+  animation: fadeInUp 1s ease-out;
 }
 
+/* Style the navigation links */
 .nav-link {
-  padding: 0.25rem 0;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: #fff;
   margin-left: 1rem;
-  border-bottom: 0.25rem solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
 }
 
-.nav-link:hover {
-  color: rgba(255, 255, 255, 0.5);
-  border-bottom-color: rgba(255, 255, 255, 0.5);
-}
-
-.nav-link.active .btn-secondary.active {
-  color: white;
-  border-bottom-color: white;
-
-}
-
-.button-54,
-.button-54:hover {
+.nav-link:hover,
+.nav-link.active {
+  background-color: #fff;
   color: #333;
-  text-shadow: none;
-  border-radius: 8px;
-  height: 50px;
-  width: 180px;
+}
+
+/* Style the call-to-action button */
+.button-54 {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #333;
+  border: 2px solid #333;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.button-54:hover {
+  background-color: transparent;
+  color: #333;
+}
+
+/* Define the fadeInUp animation used above */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

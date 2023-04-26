@@ -77,7 +77,30 @@
   <div class="col-lg-6 col-md-10">
     
 <div id='map'></div>
-
+<div class="container">
+  <div class="row">
+    
+    <div class="col-sm">
+      <%= campground.location %>
+      <% if (weather) { %>
+        <div class="weather-description">
+          <img src="<%= weather.icon %>" alt="<%= weather.description %>" />
+          <span>
+            <%= weather.description %>
+          </span>
+        </div>
+        <div class="weather-details">
+          <p>Temperature: <%= weather.temperature %>°C</p>
+          <p>Feels like: <%= weather.feelsLike %>°C</p>
+          <p>Humidity: <%= weather.humidity %>%</p>
+          <p>Wind speed: <%= weather.windSpeed %> m/s</p>
+        </div>
+        <% } else { %>
+          <p class="weather-description">No weather information available</p>
+          <% } %>
+    </div>
+  </div>
+</div>
 
 
   <% if(currentUser && !isCommented){ %>
@@ -261,28 +284,7 @@
 
 
 </div>
-<script>
-  const city = '<%= campground.location %>';
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.OPENWEATHERMAP_API_KEY}`;
 
-  axios.get(url)
-    .then(response => {
-      const weather = response.data;
-      const temperature = weather.main.temp;
-      const description = weather.weather[0].description;
-      const icon = weather.weather[0].icon;
-
-      const weatherDiv = document.querySelector('#weather');
-      weatherDiv.innerHTML = `
-        <h3>Weather in ${city}</h3>
-        <p>${description}</p>
-        <p>Temperature: ${temperature} &deg;C</p>
-      `;
-    })
-    .catch(error => {
-      console.log(error);
-    });
-</script>
 <script>
   const mapToken = '<%- process.env.MAPBOX_TOKEN  %>';
   const campground = <%- JSON.stringify(campground)%>;
